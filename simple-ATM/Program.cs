@@ -31,15 +31,15 @@ while (true)
         while (true)
         {
             Console.Write("How much would you like to deposit?: ");
-            if (!decimal.TryParse(Console.ReadLine(), out decimal deposited) || deposited < 0)
+            if (!decimal.TryParse(Console.ReadLine(), out decimal deposited) || deposited <= 0)
             {
-                Console.WriteLine("Invalid deposit: Please enter a valid number");
+                Console.WriteLine("Invalid deposit: Please enter a valid character");
                 continue;
             }
 
             balance += deposited;
 
-            Console.WriteLine($"You have deposited {deposited} in your balance");
+            Console.WriteLine($"You have deposited {deposited:F2} in your balance");
             break;
         }
     }
@@ -47,7 +47,21 @@ while (true)
     {
         while (true)
         {
-
+            Console.WriteLine("How much would you like to withdraw?: ");
+            if (!decimal.TryParse(Console.ReadLine(), out decimal withdrawn) || withdrawn <= 0)
+            {
+                Console.WriteLine("Invalid withdraw: Please enter valid character");
+                continue;
+            }
+            else if (withdrawn > balance)
+            {
+                Console.WriteLine("insufficient balance");
+                continue;
+            }
+            
+            balance -= withdrawn;
+            Console.WriteLine($"You have withdrawn {withdrawn:F2} from your balance");
+            break;
         }
     }
 }
