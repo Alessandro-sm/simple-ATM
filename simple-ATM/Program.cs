@@ -12,6 +12,51 @@ static void ShowOptions()
     Console.WriteLine("0.- Exit");
 }
 
+static void ShowBalance(decimal balance)
+{
+    Console.WriteLine($"Your balance is {balance:F2}");
+}
+
+static decimal DepositMoney(decimal balance)
+{
+    while (true)
+    {
+        Console.WriteLine("How much would you like to deposit?: ");
+        if (!decimal.TryParse(Console.ReadLine(), out decimal deposited) || deposited <= 0)
+        {
+            Console.WriteLine("Invalid deposit: Please enter a valid character");
+            continue;
+        }
+
+        balance += deposited;
+
+        Console.WriteLine($"You have deposited {deposited:F2} in your balance");
+        return balance;
+    }
+}
+
+static decimal WithdrawnMoney(decimal balance)
+{
+    while (true)
+    {
+        Console.WriteLine("How much would you like to withdraw?: ");
+        if (!decimal.TryParse(Console.ReadLine(), out decimal withdrawn) || withdrawn <= 0)
+        {
+            Console.WriteLine("Invalid withdraw: Please enter valid character");
+            continue;
+        }
+        else if (withdrawn > balance)
+        {
+            Console.WriteLine("Insufficient balance");
+            continue;
+        }
+
+        balance -= withdrawn;
+        Console.WriteLine($"You have withdrawn {withdrawn:F2} from your balance");
+        return balance;
+    }
+}
+
 while (true)
 {
     ShowOptions();
@@ -31,48 +76,15 @@ while (true)
             break;
 
         case 1:
-            Console.WriteLine($"Your balance is {balance:F2}");
+            ShowBalance(balance);
             break;
 
         case 2:
-
-            while (true)
-            {
-                Console.WriteLine("How much would you like to deposit?: ");
-                if (!decimal.TryParse(Console.ReadLine(), out decimal deposited) || deposited <= 0)
-                {
-                    Console.WriteLine("Invalid deposit: Please enter a valid character");
-                    continue;
-                }
-
-                balance += deposited;
-
-                Console.WriteLine($"You have deposited {deposited:F2} in your balance");
-                break;
-            }
-
+            balance = DepositMoney(balance);
             break;
 
         case 3:
-
-            while (true)
-            {
-                Console.WriteLine("How much would you like to withdraw?: ");
-                if (!decimal.TryParse(Console.ReadLine(), out decimal withdrawn) || withdrawn <= 0)
-                {
-                    Console.WriteLine("Invalid withdraw: Please enter valid character");
-                    continue;
-                }
-                else if (withdrawn > balance)
-                {
-                    Console.WriteLine("Insufficient balance");
-                    continue;
-                }
-
-                balance -= withdrawn;
-                Console.WriteLine($"You have withdrawn {withdrawn:F2} from your balance");
-                break;
-            }
+            balance = WithdrawnMoney(balance);
             break;
 
     }
