@@ -1,48 +1,30 @@
-\# Simple ATM
-
-
+# Simple ATM
 
 A console application in C# that simulates the basic operations of a cash machine
 
+## Features
 
+- Check balance
 
-\## Features
+- Deposit balance
 
+- Withdraw balance
 
+## Technologies
 
-\- Check balance
+- C#
 
-\- Deposit balance
-
-\- Withdraw balance
-
-
-
-\## Technologies
-
-
-
-\- C#
-
-\- .NET 10
-
-
+- .NET 10
 
 \## How to run it
 
+1. Clone this repository: `git clone https://github.com/Alessandro-sm/simple-ATM.git`
 
+2. Open the `.sln` file in Visual Studio
 
-1\. Clone this repository: `git clone https://github.com/Alessandro-sm/simple-ATM.git`
+3. Press `Ctrl+F5` to run
 
-2\. Open the `.sln` file in Visual Studio
-
-3\. Press `Ctrl+F5` to run
-
-
-
-\## Things learned
-
-
-
-TryParse for input validation, switch statements, refactoring into methods, debugging, Git workflow (branches, merge, pull requests)"]
+## Things learned
+TryParse for input validation, switch statements, refactoring into methods, debugging, Git workflow (branches, merge, pull requests)
+TryParse for input validation, switch statements, refactoring into methods, debugging, Git workflow (branches, merge, pull requests)
 
