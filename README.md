@@ -26,5 +26,4 @@ A console application in C# that simulates the basic operations of a cash machin
 
 ## Things learned
 TryParse for input validation, switch statements, refactoring into methods, debugging, Git workflow (branches, merge, pull requests)
-TryParse for input validation, switch statements, refactoring into methods, debugging, Git workflow (branches, merge, pull requests)
 
