@@ -1,6 +1,7 @@
 ﻿decimal balance = 1000m;
+bool exit = false;
 
-while (true)
+static void ShowOptions()
 {
     Console.WriteLine("======================================");
     Console.WriteLine("============= SIMPLE ATM =============");
@@ -9,6 +10,11 @@ while (true)
     Console.WriteLine("2.- Deposit money");
     Console.WriteLine("3.- Withdraw money");
     Console.WriteLine("0.- Exit");
+}
+
+while (true)
+{
+    ShowOptions();
 
     Console.Write("Choose: ");
     if (!int.TryParse(Console.ReadLine(), out int choice))
@@ -16,53 +22,70 @@ while (true)
         Console.WriteLine("Invalid input. Please enter a valid number");
         continue;
     }
-    
-    if (choice == 0)
+
+    switch (choice)
     {
-        Console.WriteLine("Closing...");
+        case 0:
+            Console.WriteLine("Closing...");
+            exit = true;
+            break;
+
+        case 1:
+            Console.WriteLine($"Your balance is {balance:F2}");
+            break;
+
+        case 2:
+
+            while (true)
+            {
+                Console.WriteLine("How much would you like to deposit?: ");
+                if (!decimal.TryParse(Console.ReadLine(), out decimal deposited) || deposited <= 0)
+                {
+                    Console.WriteLine("Invalid deposit: Please enter a valid character");
+                    continue;
+                }
+
+                balance += deposited;
+
+                Console.WriteLine($"You have deposited {deposited:F2} in your balance");
+                break;
+            }
+
+            break;
+
+        case 3:
+
+            while (true)
+            {
+                Console.WriteLine("How much would you like to withdraw?: ");
+                if (!decimal.TryParse(Console.ReadLine(), out decimal withdrawn) || withdrawn <= 0)
+                {
+                    Console.WriteLine("Invalid withdraw: Please enter valid character");
+                    continue;
+                }
+                else if (withdrawn > balance)
+                {
+                    Console.WriteLine("Insufficient balance");
+                    continue;
+                }
+
+                balance -= withdrawn;
+                Console.WriteLine($"You have withdrawn {withdrawn:F2} from your balance");
+                break;
+            }
+            break;
+
+    }
+    if (exit)
+    {
         break;
     }
-    else if (choice == 1)
+    Console.WriteLine("would you like to come back to the menu? (y/n)");
+    String back_to_menu = Console.ReadLine();
+    
+    if (!string.IsNullOrEmpty(back_to_menu) && char.ToLower(back_to_menu[0]) == 'n')
     {
-        Console.WriteLine($"Your Balance is {balance:F2}");
+        break;
     }
-    else if (choice == 2)
-    {
-        while (true)
-        {
-            Console.Write("How much would you like to deposit?: ");
-            if (!decimal.TryParse(Console.ReadLine(), out decimal deposited) || deposited <= 0)
-            {
-                Console.WriteLine("Invalid deposit: Please enter a valid character");
-                continue;
-            }
 
-            balance += deposited;
-
-            Console.WriteLine($"You have deposited {deposited:F2} in your balance");
-            break;
-        }
-    }
-    else if (choice == 3)
-    {
-        while (true)
-        {
-            Console.WriteLine("How much would you like to withdraw?: ");
-            if (!decimal.TryParse(Console.ReadLine(), out decimal withdrawn) || withdrawn <= 0)
-            {
-                Console.WriteLine("Invalid withdraw: Please enter valid character");
-                continue;
-            }
-            else if (withdrawn > balance)
-            {
-                Console.WriteLine("insufficient balance");
-                continue;
-            }
-            
-            balance -= withdrawn;
-            Console.WriteLine($"You have withdrawn {withdrawn:F2} from your balance");
-            break;
-        }
-    }
 }
-  
