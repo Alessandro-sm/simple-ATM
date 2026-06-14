@@ -16,7 +16,7 @@ A console application in C# that simulates the basic operations of a cash machin
 
 - .NET 10
 
-\## How to run it
+## How to run it
 
 1. Clone this repository: `git clone https://github.com/Alessandro-sm/simple-ATM.git`
 
